@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
-app.MapGet("/home", async (httpContext) =>
+app.MapGet("/", async (httpContext) =>
 {
     string? clientId = app.Configuration["weatherapi:ClientId"];
     await httpContext.Response.WriteAsync($"Weather API Client Id: {clientId}\n");

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using IConfigurationExample.Options;
+using Microsoft.AspNetCore.Mvc;
  
 
 namespace IConfigurationExample.Controllers
@@ -11,7 +12,7 @@ namespace IConfigurationExample.Controllers
             _configuration = configuration;
         }
 
-        [Route("/")]
+        [Route("/index")]
         public IActionResult Index()
         {
             IConfigurationSection weatherapi = _configuration.GetSection("weatherapi");
@@ -20,6 +21,18 @@ namespace IConfigurationExample.Controllers
             ViewBag.ClientId = weatherapi.GetValue<Guid>("ClientId");
             ViewBag.ClientSecret = weatherapi.GetValue<Guid>("ClientSecret");
             return View();
+        }
+
+        [Route("/home")]
+        public IActionResult Home()
+        {
+            var  weatherApiOptions = _configuration.GetSection("weatherapi").Get<WeatherApiOptions>();
+            
+            // This is another alternative to Get method 
+            // var options = new WeatherApiOptions();
+            // _configuration.GetSection("weatherapi").Bind(options);
+
+            return View(weatherApiOptions);
         }
     }
 
