@@ -20,6 +20,7 @@ namespace IConfigurationExample.Controllers
 
             ViewBag.ClientId = weatherapi.GetValue<Guid>("ClientId");
             ViewBag.ClientSecret = weatherapi.GetValue<Guid>("ClientSecret");
+            ViewBag.Title = "Index page";
             return View();
         }
 
@@ -27,12 +28,13 @@ namespace IConfigurationExample.Controllers
         public IActionResult Home()
         {
             var  weatherApiOptions = _configuration.GetSection("weatherapi").Get<WeatherApiOptions>();
-            
+
             // This is another alternative to Get method 
             // var options = new WeatherApiOptions();
             // _configuration.GetSection("weatherapi").Bind(options);
 
-            return View(weatherApiOptions);
+            ViewBag.Title = "Home page";
+            return View("Home",weatherApiOptions);
         }
     }
 

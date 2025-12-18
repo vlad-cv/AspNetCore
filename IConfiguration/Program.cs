@@ -1,7 +1,13 @@
 
+using IConfigurationExample.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
+// Configuration as a service
+builder.Services.Configure<WeatherApiOptions>(builder.Configuration.GetSection("weatherapi"));
+
 var app = builder.Build();
 
 app.MapGet("/", async (httpContext) =>
@@ -14,6 +20,8 @@ app.MapGet("/", async (httpContext) =>
     await httpContext.Response.WriteAsync($"Weather API Client Id: {app.Configuration.GetSection("weatherapi").GetValue<string>("ClientId", "Default value")}\n");
 
 });
+
+
 
 app.MapDefaultControllerRoute();
 
