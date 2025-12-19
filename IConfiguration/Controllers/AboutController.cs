@@ -1,4 +1,4 @@
-﻿using IConfigurationExample.Options;
+﻿using ConfigurationExample.Options;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 

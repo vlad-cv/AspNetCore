@@ -1,5 +1,5 @@
 
-using IConfigurationExample.Options;
+using ConfigurationExample.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 

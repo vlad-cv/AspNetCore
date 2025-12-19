@@ -1,4 +1,4 @@
-﻿namespace IConfigurationExample.Options
+﻿namespace ConfigurationExample.Options
 {
     public class WeatherApiOptions
     {
